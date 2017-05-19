@@ -129,7 +129,7 @@
 					files.splice(i,1);
 				}
 			}*/
-			if (true||oldlen !== files.length){
+			if (true/*oldlen !== files.length*/){
 				document.body.className = "setting";
 				fadeIn(drophidden, body);
 				var myRandom = Math.floor(Math.random()*(files.length-0.5));
