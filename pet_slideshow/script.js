@@ -84,6 +84,7 @@
 			if (extralong) {
 				img.setAttribute('loop', 'true');
 				img.setAttribute('autoplay', 'true');
+				img.load()
 			}
 			img.onload = img.onloadeddata = function(){
 				img.onload = img.loadeddata = null;
