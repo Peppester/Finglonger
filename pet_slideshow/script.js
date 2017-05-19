@@ -37,7 +37,7 @@
 				if (removeChild){
 					if (element.getAttribute('src')){
 						element.setAttribute('srcTmp', element.getAttribute('src'));
-						element.setAttribute('src', "");
+						element.removeAttribute('src');
 					}
 					parent.removeChild(element);
 				} else {
@@ -55,6 +55,7 @@
 	function fadeIn(element, parent) {
 		if (!element.getAttribute('src')){
 			element.setAttribute('src', element.getAttribute('srcTmp'));
+			if (element.tagName === 'video') element.load();
 		}
 		//if (!element) return;
 		var op = 1.037;  // initial opacity
@@ -77,10 +78,15 @@
 	function fileLoaded(dataUri, extralong) {
 		var extraD = extralong ? 9000 : 1000; // give the GIF videoes longer time to load
 		if (typeof dataUri === 'string') {
-			var img = new Image();
-			img.src = dataUri;
 			var prevTime = performance.now();
-			img.onload = function(){
+			var img = extralong ? document.createElement('video') : new Image();
+			img.src = dataUri;
+			if (extralong) {
+				img.setAttribute('loop', 'true');
+				img.setAttribute('autoplay', 'true');
+			}
+			img.onload = img.onloadeddata = function(){
+				img.onload = img.loadeddata = null;
 				if(prev_image)
 					fadeOut(	prev_image,	results );
 				fadeIn( 	img,		results );
@@ -114,7 +120,7 @@
 			reader.readAsArrayBuffer(file);*/
 			//console.log( file );
 			originalFiles.push(
-				fileLoaded( "../dem_puppy_pics/" + file.name ), /.gif$/.test( window.files[myRandom] )
+				fileLoaded( "../dem_puppy_pics/" + file.name ), /.webm$/.test( window.files[myRandom] )
 			);
 			//window.dehFnames += file.name + "\n"
 		} else {
