@@ -34,6 +34,8 @@
 		requestAnimationFrame(function myTimer() {
 			if (op <= 0){
 				if (removeChild){
+					element.setAttribute('srcTmp', element.src);
+					element.src = "";
 					parent.removeChild(element);
 				} else {
 					element.style.display = 'none';
@@ -47,6 +49,9 @@
 	}
 
 	function fadeIn(element, parent) {
+		if (!element.src){
+			element.src = element.getAttribute('srcTmp');
+		}
 		//if (!element) return;
 		var op = 0;  // initial opacity
 		element.style.opacity = op;
@@ -64,7 +69,7 @@
 
 	function fileLoaded(dataUri) {
 		if (typeof dataUri === 'string') {
-			var img=document.createElement('iframe');//new Image();
+			var img = new Image();
 			img.src = dataUri;
 			var prevTime = Date.now();
 			img.onload = function(){
@@ -155,7 +160,7 @@
 		"WoolyOpossum.jpg",
 		"Woodchuck.jpg",
 		"Yak.JPG",
-		"Wombat.jpg",
+		/*"Wombat.jpg",
 		"Wolverine.jpg",
 		"Wolf.jpg",
 		"Wisent.jpg",
@@ -367,7 +372,7 @@
 		"8f4b2c40-7915-45c0-8603-8544ed03eee2 - JACK GIFFIN.jpg",
 		"17757223_1611903738837603_4439009402940519296_n.jpg",
 		"17523709_1612010302160280_994246808056580499_n.jpg",
-		"14468f8c-d1f2-428f-9423-1140903d4f1a - JACK GIFFIN.jpg"
+		"14468f8c-d1f2-428f-9423-1140903d4f1a - JACK GIFFIN.jpg"*/
 	];
 	dropper.ondrop({
 		dataTransfer: {
