@@ -123,13 +123,13 @@
 		if (e.dataTransfer.files.length){
 			var oldlen=files.length;
 			window.files = window.files.concat([].slice.call(e.dataTransfer.files));
-			var i=files.length;
+			/*var i=files.length;
 			while(i--){
 				if ( ! /^image/.test(files[i].type) ){
 					files.splice(i,1);
 				}
-			}
-			if (oldlen !== files.length){
+			}*/
+			if (true||oldlen !== files.length){
 				document.body.className = "setting";
 				fadeIn(drophidden, body);
 				var myRandom = Math.floor(Math.random()*(files.length-0.5));
