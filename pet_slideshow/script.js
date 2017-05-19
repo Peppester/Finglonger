@@ -92,6 +92,7 @@
 	function readFile(file, myRandom) {
 		if ( ! isElement(file) ){
 			var reader = new FileReader();
+			console.log(file);
 			reader.onload = function(event) {
 				originalFiles.push( fileLoaded( URL.createObjectURL(new Blob([event.target.result])) ) );
 			};
