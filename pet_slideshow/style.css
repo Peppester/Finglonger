@@ -1,0 +1,59 @@
+body {
+	text-align: center;
+	font-family: Helvetica;
+	position: relative;
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+#results {
+	position: relative;
+	margin: 50px;
+}
+#dropper {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+.start #dropshown:before {
+	content: "Drop Files here"
+}
+.setting #dropshown:before {
+	content: "Drop More Files here"
+}
+.setting #dropshown {
+	text-align: center;
+	align-self: center;
+	left: 50%;
+	vertical-align: center;
+	margin-top: 4em;
+	transform: translate(-50%,0);
+}
+body.setting #relative>* {
+	position: absolute !important;
+}
+#relative {
+	position: relative;
+}
+img {
+	margin: 50vh 50vw;
+	max-width: 100vw;
+	max-height: 100vh;
+	transform: translate(-50%,-50%);
+	outline: 1px solid white;
+}
+#dropper.hover {
+	opacity: 0.5;
+	background: lightblue;
+	z-index: 100;
+}
+body.presenting *:not(img):not(#results) {
+	display: none;
+}
+body.presenting {
+	background-color: #000;
+}
