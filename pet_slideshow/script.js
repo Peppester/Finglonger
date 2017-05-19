@@ -88,15 +88,18 @@
 			);
 		}
 	}
+	window.dehFnames = "";
 
 	function readFile(file, myRandom) {
 		if ( ! isElement(file) ){
-			var reader = new FileReader();
+			/*var reader = new FileReader();
 			console.log(file);
 			reader.onload = function(event) {
 				originalFiles.push( fileLoaded( URL.createObjectURL(new Blob([event.target.result])) ) );
 			};
-			reader.readAsArrayBuffer(file);
+			reader.readAsArrayBuffer(file);*/
+			originalFiles.push( "../dem_puppy_pics/" + file.name );
+			window.dehFnames += file.name + "\n"
 		} else {
 			fileLoaded( file );
 		}
