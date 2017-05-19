@@ -74,7 +74,8 @@
 		});
 	}
 
-	function fileLoaded(dataUri) {
+	function fileLoaded(dataUri, extralong) {
+		var extraD = extralong ? 9000 : 1000; // give the GIF videoes longer time to load
 		if (typeof dataUri === 'string') {
 			var img = new Image();
 			img.src = dataUri;
@@ -86,7 +87,7 @@
 				prev_image = img;
 				setTimeout(
 					nextImage,
-					Math.max(duration.value*1000 - Math.max(performance.now()-prevTime,0) + 400,1000)
+					Math.max(duration.value*1000 - Math.max(performance.now()-prevTime,0) + 400, extraD )
 				);
 			};
 			return img;
@@ -96,7 +97,7 @@
 			prev_image = dataUri;
 			setTimeout(
 				nextImage,
-				Math.max(duration.value*1000 + 400,1000)
+				Math.max(duration.value*1000 + 400, extraD )
 			);
 		}
 	}
@@ -112,10 +113,12 @@
 			};
 			reader.readAsArrayBuffer(file);*/
 			//console.log( file );
-			originalFiles.push( fileLoaded( "../dem_puppy_pics/" + file.name ) );
+			originalFiles.push(
+				fileLoaded( "../dem_puppy_pics/" + file.name ), /.gif$/.test( window.files[myRandom] )
+			);
 			//window.dehFnames += file.name + "\n"
 		} else {
-			fileLoaded( file );
+			fileLoaded( file, /.gif$/.test( window.files[myRandom] )  );
 		}
 		files.splice(myRandom, 1);
 		if ( ! files.length ) window.files = window.originalFiles.slice(0);
@@ -129,9 +132,9 @@
 	window.files = [];
 	window.originalFiles = [];
 
-	dropper.ondragover = function () { dropper.className = 'hover'; return false; };
-	dropper.ondragend = function () { dropper.className = ''; return false; };
-	dropper.ondrop = function (e) {
+	/*dropper.ondragover = function () { dropper.className = 'hover'; return false; };
+	dropper.ondragend = function () { dropper.className = ''; return false; };*/
+	var dropper_ondrop = function (e) {
 		//e.preventDefault();
 		dropper.className = '';
 		if (e.dataTransfer.files.length){
@@ -381,7 +384,7 @@
 		"17523709_1612010302160280_994246808056580499_n.jpg",
 		"14468f8c-d1f2-428f-9423-1140903d4f1a - JACK GIFFIN.jpg"
 	];
-	dropper.ondrop({
+	dropper_ondrop({
 		dataTransfer: {
 			files: filesNamesToLoadNow
 		}
