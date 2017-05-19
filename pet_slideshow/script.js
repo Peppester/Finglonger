@@ -91,6 +91,7 @@
 	//window.dehFnames = "";
 
 	function readFile(file, myRandom) {
+		var file = typeof file === 'string' ? { name: file } : file;
 		if ( ! isElement(file) ){
 			/*var reader = new FileReader();
 			console.log(file);
