@@ -28,11 +28,12 @@
 
 	function fadeOut(element, parent, removeChild) {
 		//if (!element) return;
-		var op = 1;  // initial opacity
+		var op = 2;  // initial opacity
 		element.style.opacity = op;
+		element.style.imageRendering = 'optimizeSpeed';
 		element.style.display = 'block';
 		requestAnimationFrame(function myTimer() {
-			if (op <= 0){
+			if (op < 1){
 				if (removeChild){
 					if (element.getAttribute('src')){
 						element.setAttribute('srcTmp', element.getAttribute('src'));
@@ -44,8 +45,9 @@
 				}
 				return;
 			}
-			element.style.opacity = op;
-			op -= 0.05;
+			element.style.opacity = op - 1;
+			//op -= 0.05;
+			op /= 1.037;
 			requestAnimationFrame(myTimer);
 		});
 	}
@@ -55,16 +57,19 @@
 			element.setAttribute('src', element.getAttribute('srcTmp'));
 		}
 		//if (!element) return;
-		var op = 0;  // initial opacity
+		var op = 1.037;  // initial opacity
 		element.style.opacity = op;
 		if (element.parentNode !== parent) parent.appendChild(element);
+		element.style.imageRendering = 'optimizeSpeed';
 		element.style.display = 'block';
 		requestAnimationFrame(function myTimer() {
-			if (op > 1){
+			if (op > 2) {
+				element.style.imageRendering = 'optimizeQuality';
 				return;
 			}
-			element.style.opacity = op;
-			op += 0.05;
+			element.style.opacity = op - 1;
+			//op += 0.05;
+			op *= 1.037;
 			requestAnimationFrame(myTimer);
 		});
 	}
