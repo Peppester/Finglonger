@@ -64,7 +64,7 @@
 
 	function fileLoaded(dataUri) {
 		if (typeof dataUri === 'string') {
-			var img=new Image();
+			var img=document.createElement('iframe');//new Image();
 			img.src = dataUri;
 			var prevTime = Date.now();
 			img.onload = function(){
