@@ -111,7 +111,7 @@
 				originalFiles.push( fileLoaded( URL.createObjectURL(new Blob([event.target.result])) ) );
 			};
 			reader.readAsArrayBuffer(file);*/
-			console.log( file );
+			//console.log( file );
 			originalFiles.push( fileLoaded( "../dem_puppy_pics/" + file.name ) );
 			//window.dehFnames += file.name + "\n"
 		} else {
