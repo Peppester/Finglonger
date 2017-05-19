@@ -34,8 +34,10 @@
 		requestAnimationFrame(function myTimer() {
 			if (op <= 0){
 				if (removeChild){
-					element.setAttribute('srcTmp', element.src);
-					element.src = "";
+					if (element.getAttribute('src')){
+						element.setAttribute('srcTmp', element.getAttribute('src'));
+						element.setAttribute('src', "");
+					}
 					parent.removeChild(element);
 				} else {
 					element.style.display = 'none';
@@ -49,8 +51,8 @@
 	}
 
 	function fadeIn(element, parent) {
-		if (!element.src){
-			element.src = element.getAttribute('srcTmp');
+		if (!element.getAttribute('src')){
+			element.setAttribute('src', element.getAttribute('srcTmp'));
 		}
 		//if (!element) return;
 		var op = 0;  // initial opacity
