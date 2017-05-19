@@ -171,7 +171,7 @@
 	};
 	
 	var filesNamesToLoadNow = [
-		"Zebu.jpg",
+		/*"Zebu.jpg",
 		"Zebras.jpg",
 		"WoolyOpossum.jpg",
 		"Woodchuck.jpg",
@@ -387,8 +387,10 @@
 		"17862562_1612010588826918_4266416905628281469_n.jpg",
 		"8f4b2c40-7915-45c0-8603-8544ed03eee2 - JACK GIFFIN.jpg",
 		"17757223_1611903738837603_4439009402940519296_n.jpg",
-		"17523709_1612010302160280_994246808056580499_n.jpg",
-		"14468f8c-d1f2-428f-9423-1140903d4f1a - JACK GIFFIN.jpg"
+		"17523709_1612010302160280_994246808056580499_n.jpg",*/
+		"14468f8c-d1f2-428f-9423-1140903d4f1a - JACK GIFFIN.jpg",
+		"DSC_5605.webm",
+		"DSC_5609.webm"
 	];
 	dropper_ondrop({
 		dataTransfer: {
